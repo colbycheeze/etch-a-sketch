@@ -11,8 +11,21 @@
 }
 
 #container {
-	border: 1px solid #3540a5;
-	margin: 20px;
 	width: 800px;
 	height: 800px;
+	text-align: center;
+}
+
+#grid{
+	border: 1px solid #3540a5;
+	margin-top: 20px;
+	width: 800px;
+	height: 800px;
+}
+
+.center {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Helvetica, Arial, Monaco;
 }

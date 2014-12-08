@@ -3,26 +3,33 @@
  */
 
 function createGrid (rows, cols) {
-	var $container,
+	var $grid,
 		$row,
 		containerWidth,
 		containerHeight;
 	
-	$('body').append('<div id="container"></div>');
+	$grid = $('#grid');
 	
-	$container = $('#container');
-	
+	//Fill grid
 	for (var i = 0; i < rows; i += 1) {
 		
-		$container.append('<div class="row"></div>');
-		$row = $('#container .row').last();
+		$grid.append('<div class="row"></div>');
+		$row = $('#grid .row').last();
 		
 		for (var j = 0; j < cols; j += 1) {
-			//$('#container .row').last().append('<div class="box">' + j + '</div>');
+			
 			$row.append('<div class="box"></div>');
 		}
 	}
 	
+	//Set up listeners
+	$('.box').hover(function(){
+		$(this).css( 'background-color', 'red');
+	}, function(){
+		//Do something later maybe?
+	});
+	
+	//Resize grid to fit container
 	containerWidth = $('#container').width();
 	containerHeight = $('#container').height();
 	
@@ -31,19 +38,23 @@ function createGrid (rows, cols) {
 }
 
 $(document).ready( function (){
+		
+	createGrid(25, 25);
 	
-	var rows = prompt('How many rows?');
-	var cols = prompt('How many cols?');
-	
-	createGrid(rows, cols);
-	
-	$('.box').hover(function(){
-		$(this).css( 'background-color', 'red');
-	}, function(){
-		//Do something later maybe?
-	});
-	
+	//Clears the grid back to starting color
 	$('#resetButton').click(function(){
 		$('.box').css('background-color', '#aaa');
+	});
+	
+	//Recreates grid with custom size
+	$('#resizeButton').click(function(){
+			
+		var rows = prompt('How many rows?');
+		var cols = prompt('How many cols?');
+		
+		$('.row').remove();
+		
+		createGrid(rows, cols);
+		
 	});
 });
